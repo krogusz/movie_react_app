@@ -26,11 +26,16 @@ app.use(yearsList);
 
 
 // app.get('/api/getUsername', (req, res) => res.send("aaa"));
-app.get("/api/getUsername", (req, res) =>
-  res.send({ username: os.userInfo().username })
-);
+app.get("/api", (req, res) =>{
+	var data={
+		genresList: res.locals.genres.map(genre => genre.name),
+		languagesList: res.locals.languages.map(language => language.name),
+		yearsList:res.locals.years
+	}
+  res.json(data)
+});
 
-app.post('/api/getUsername', (req,res) => {
+app.post('/api', (req,res) => {
 	var {people, genres, release, language}=req.body;
 	var IdOfGenre = genreId(res.locals.genres, genres);
 	var ISOofLanguage = languageISO(res.locals.languages, language);
@@ -38,12 +43,11 @@ app.post('/api/getUsername', (req,res) => {
 	.then(result => {
 		var url = prepareUrl(result, IdOfGenre, ISOofLanguage, release);
 		request(url, (err, response, body)=>{
-			console.log(url);
 			var result=JSON.parse(body).results;
 			if(err || result.length===0){
 				var data={
-					title:"We do not have any movies for you",
-					overview: "Try change the criteria"
+					title:"We do not have any movies for you :(",
+					overview: "Try to change the criteria!"
 				};
 				console.log("Error: we have a problem with API request");
 				return res.json(data);
@@ -56,8 +60,8 @@ app.post('/api/getUsername', (req,res) => {
 	})
 	.catch( err => {
 		var data={
-			title: "Unfortunatelly, something went wrong",
-			overview:"Try later or change the criteria"
+			title: "Unfortunatelly, something went wrong :(",
+			overview:"Try later or change the criteria!"
 		};
 		console.log("Error: we have a problem with finding person ID");
 		return res.json(data);
@@ -88,7 +92,6 @@ function genresList(req, res, next){
 //get list of all languages
 function languagesList(req,res,next){
 	res.locals.languages=langs.all();
-	console.log("lista",res.locals.languages);
 	next();
 };
 
@@ -113,7 +116,6 @@ function genreId(list, name){
 
 function languageISO(list, name){
 	var result= list.find(language => language.name ===name);
-	console.log("rezultat wyszukania",result);
 	if (typeof result === "undefined"){return ""}else{return result["1"]};
 }
 

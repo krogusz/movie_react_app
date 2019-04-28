@@ -21,8 +21,9 @@ class FormContainer extends Component {
       },
 
       //states for selectin year of release and language
-      releaseYear:["2019", "2018", "2017", "2016", "2015"],
-      languages: ["en", "pl"],
+      genres:[],
+      releaseYear:[],
+      languages: [],
 
       //states for selected movie
       movieInfo:{
@@ -35,11 +36,24 @@ class FormContainer extends Component {
     this.handleInput = this.handleInput.bind(this);
    }
 
+    componentDidMount() {
+    fetch('/api')
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          releaseYear:data.yearsList,
+          languages:data.languagesList,
+          genres:data.genresList
+        });
+      });
+    }
+
+
     handleFormSubmit(e) {
       e.preventDefault();
       let criteria = this.state.criteria;
 
-      fetch("/api/getUsername", {
+      fetch("/api", {
         method: "POST",
         body: JSON.stringify(criteria),
         headers: {
@@ -56,7 +70,7 @@ class FormContainer extends Component {
           });
         });
       });
-    }
+    } 
 
     handleInput(e) {
     let value = e.target.value;
@@ -85,15 +99,14 @@ class FormContainer extends Component {
 	        value={this.state.criteria.people}
 	        handleChange={this.handleInput}
 	        />{" "}
-		{/*Choosing the genres*/}
-		  <Input
-			id={"genres_container"} 	
-	        inputType={"text"}
-	        title={"Choose genre"}
-	        name={"genres"}
-	        value={this.state.criteria.genres}
-	        handleChange={this.handleInput}
-	        />{" "}
+          {/*Choosing the genres*/}
+         <Select
+            title={"Choose genre"}
+            name={"genres"}
+            options={this.state.genres}
+            value={this.state.criteria.genres}
+            handleChange={this.handleInput}
+          />{" "}
 
 	    {/*Choosing the year of release*/}
 	       <Select
