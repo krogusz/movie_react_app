@@ -7,15 +7,15 @@ In the development mode: 2 servers running.
 
 How to start
 
-  1) Clone the repository
+  1) Clone the repository ->
   git clone https://github.com/krogusz/movie_react_app.git
 
-  2) Go inside the directory
+  2) Go inside the directory ->
   cd movie_react_app
 
-  3) Install dependencies
+  3) Install dependencies ->
   npm install
 
-  4) Start development server
+  4) Start development server ->
   npm run dev
 
