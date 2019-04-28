@@ -19,3 +19,16 @@ How to start
   4) Start development server ->
   npm run dev
 
+
+
+In this project I’ve been using the following technologies and frameworks:
+JavaScript (ES6),
+Node.js,
+Express.js,
+HTML,
+CSS,
+GIT,
+Bootstrap,
+Webpack,
+React.
+
