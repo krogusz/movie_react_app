@@ -1,0 +1,19 @@
+
+a:not([href]):not([tabindex]) {color:white;}
+.form-inline{
+	margin-bottom:0;
+	width:10%;}
+
+.form-inline img{
+	width:100%;
+    height: auto;}
+
+.container{margin-top:75px;
+width:50%;}
+
+.card-body{margin-top:75px;
+margin-bottom:75px;}
+
+
+
+    
