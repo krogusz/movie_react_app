@@ -92,12 +92,12 @@ class FormContainer extends Component {
       	<form action="/" method ="post" className="container-fluid FormContainer" onSubmit={this.handleFormSubmit}>
 	    {/*choosing people: actors, director rtc.*/}
 	      <Input
-			id={"people_container"} 	
-	        inputType={"text"}
+			    id={"people_container"} 	
+	        type="text"
 	        title={"Choose the people"}
 	        name={"people"}
 	        value={this.state.criteria.people}
-	        handleChange={this.handleInput}
+	        onChange={this.handleInput}
 	        />{" "}
           {/*Choosing the genres*/}
          <Select
@@ -105,7 +105,7 @@ class FormContainer extends Component {
             name={"genres"}
             options={this.state.genres}
             value={this.state.criteria.genres}
-            handleChange={this.handleInput}
+            onChange={this.handleInput}
           />{" "}
 
 	    {/*Choosing the year of release*/}
@@ -114,7 +114,7 @@ class FormContainer extends Component {
 	          name={"release"}
 	          options={this.state.releaseYear}
 	          value={this.state.criteria.release}
-	          handleChange={this.handleInput}
+	          onChange={this.handleInput}
 	        />{" "}
 	    {/*Choosing the year of language*/}
 	        <Select
@@ -122,7 +122,7 @@ class FormContainer extends Component {
 	          name={"language"}
 	          options={this.state.languages}
 	          value={this.state.criteria.language}
-	          handleChange={this.handleInput}
+	          onChange={this.handleInput}
 	        />{" "}
 	    {/*Sending criteria*/}
 	         <Button

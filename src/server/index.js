@@ -22,10 +22,6 @@ app.use(languagesList);
 app.use(yearsList);
 
 
-
-
-
-// app.get('/api/getUsername', (req, res) => res.send("aaa"));
 app.get("/api", (req, res) =>{
 	var data={
 		genresList: res.locals.genres.map(genre => genre.name),

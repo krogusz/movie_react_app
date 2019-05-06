@@ -3,16 +3,16 @@ import React from "react";
 const Input = props => {
   return (
     <div className="form-group">
-      <label for={props.name}>
+      <label htmlFor={props.name}>
         {props.title}
       </label>
       <div id={props.id}>
         <input
           className="form-control"
           name={props.name}
-          type={props.inputType}
+          type={props.type}
           value={props.value}
-          onChange={props.handleChange}
+          onChange={props.onChange}
           {...props}
         />
       </div>
